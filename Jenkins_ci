@@ -3,9 +3,7 @@ pipeline {
 
     stages {
         stage('Checkout') {
-            agent {
-                label 'pipeline'
-            }
+            agent {label 'pipeline'}
             steps {
                 // Your build steps go here
                 echo 'Building on the pipeline node'
@@ -13,27 +11,21 @@ pipeline {
         }
 
         stage('Build') {
-            agent {
-                label 'pipeline'
-            }
+            agent {label 'pipeline'}
             steps {
                 sh 'docker build -t reshitha14/trivy:latest .'
             }
         }
 
         stage('Trivy Scan') {
-            agent {
-                label 'trivy'
-            }
+            agent {label 'trivy'}
             steps {
                 sh 'trivy reshitha14/trivy:latest'
             }
         }
 
         stage('Push Image') {
-            agent {
-                label 'pipeline'
-            }
+            agent {label 'pipeline'}
             steps {
                 // Your image push steps go here
                 echo 'Pushing image on the pipeline node'
