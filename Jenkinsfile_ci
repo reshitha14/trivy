@@ -21,6 +21,7 @@ pipeline {
             agent {label 'trivy'}
             steps {
                 sh 'trivy reshitha14/trivy:latest'
+                // sh 'trivy --no-progress --exit-code 1 --severity MEDIUM,HIGH,CRITICAL reshitha14/trivy:latest'
             }
         }
 
